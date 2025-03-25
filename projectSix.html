@@ -1,0 +1,129 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Card with emoji</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .card {
+            width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+        }
+
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin: 0 0 10px;
+        }
+
+        .card-description {
+            font-size: 16px;
+            color: #555;
+        }
+
+        .card-footer {
+            text-align: right;
+            padding: 10px 20px;
+            background-color: #f9f9f9;
+        }
+
+        .card-footer a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="card-content">
+            <h2 class="card-title">Shadi ka Card </h2>
+            <p class="card-description">Hamare yahan shadi ke card banaye jate hain.Hamare card ka design kaisa laga aapko? Please apna review de.</p>
+        </div>
+        <div class="card-footer">
+            <div class="star-rating" id="star-rating">
+        <span class="star" data-value="1">⭐</span>
+        <span class="star" data-value="2">⭐</span>
+        <span class="star" data-value="3">⭐</span>
+        <span class="star" data-value="4">⭐</span>
+        <span class="star" data-value="5">⭐</span>
+    </div>
+
+    <p id="rating-text">Rating: 0/5</p>
+    <div id="emoji">😐</div>
+
+
+    
+    <script>
+        const stars = document.querySelectorAll('.star');
+        const ratingText = document.getElementById('rating-text');
+        const emoji = document.getElementById('emoji');
+        let currentRating = 0;
+
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                currentRating = parseInt(star.getAttribute('data-value'));
+                updateRating();
+                updateEmoji();
+            });
+            
+        });
+
+        function updateRating() {
+            stars.forEach(star => {
+                if (parseInt(star.getAttribute('data-value')) <= currentRating) {
+                    star.style.color = '#ffcc00';
+                } else {
+                    star.style.color = ''; 
+                }
+            });
+            ratingText.textContent = `Rating: ${currentRating}/5`;
+        }
+
+        function updateEmoji() {
+           
+            if (currentRating === 1) {
+                emoji.textContent = '😡'; 
+            } else if (currentRating === 2) {
+                emoji.textContent = '😞'; 
+            } else if (currentRating === 3) {
+                emoji.textContent = '😐'; 
+            } else if (currentRating === 4) {
+                emoji.textContent = '😊'; 
+            } else if (currentRating === 5) {
+                emoji.textContent = '😁'; 
+            }
+        }
+    </script>
+   
+</body>
+</html>
+
